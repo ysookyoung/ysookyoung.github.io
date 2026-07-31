@@ -1,0 +1,1137 @@
+/* ========================================
+   전체 기본 설정
+======================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+
+  background: #f3f3f0;
+  color: #111111;
+
+  font-family:
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    sans-serif;
+
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+
+/* ========================================
+   첫 화면
+======================================== */
+
+.intro {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #3f3f3f;
+}
+
+.intro h1 {
+  margin: 0;
+  padding-left: 0.42em;
+
+  color: #f2f2f2;
+
+  font-size: clamp(18px, 1.7vw, 28px);
+  font-weight: 300;
+
+  line-height: 1;
+  letter-spacing: 0.42em;
+}
+
+
+/* ========================================
+   상단 메뉴
+======================================== */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  width: 100%;
+  padding: 24px 4vw;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #ffffff;
+  background: transparent;
+
+  border: 0;
+
+  mix-blend-mode: difference;
+}
+
+.logo {
+  flex-shrink: 0;
+
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+nav a {
+  position: relative;
+
+  font-size: 12px;
+  font-weight: 300;
+
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+nav a::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+
+  width: 0;
+  height: 1px;
+
+  background: currentColor;
+
+  transition: width 0.25s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+
+/* ========================================
+   공통 섹션
+======================================== */
+
+.section {
+  width: 100%;
+  padding: 140px 4vw;
+
+  background: #f3f3f0;
+
+  scroll-margin-top: 40px;
+}
+
+.section + .section {
+  border-top: 1px solid #d8d8d4;
+}
+
+.section h2 {
+  margin: 0 0 70px;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+
+/* ========================================
+   작품 공통 레이아웃
+======================================== */
+
+.work {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(260px, 1fr);
+
+  gap: 50px;
+  align-items: start;
+
+  margin-bottom: 140px;
+}
+
+.work:last-child {
+  margin-bottom: 0;
+}
+
+/* 미디어와 글이 각자의 칸을 넘어가지 않도록 설정 */
+
+.work > * {
+  min-width: 0;
+}
+
+
+/* ========================================
+   임시 이미지 영역
+======================================== */
+
+.media-placeholder {
+  width: 100%;
+  min-height: 520px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #eeeeee;
+  color: #888888;
+
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.16em;
+}
+
+
+/* ========================================
+   작품 미디어 공통 영역
+======================================== */
+
+.work-media {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* 작품 이미지 */
+
+.work-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+}
+
+
+/* ========================================
+   직접 업로드한 MP4 영상
+======================================== */
+
+.work-video {
+  display: block;
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  object-fit: contain;
+
+  background: #000000;
+}
+
+
+/* ========================================
+   모든 YouTube 영상 공통 설정
+======================================== */
+
+/*
+  MP4 영상과 동일하게 왼쪽 미디어 칸의
+  전체 폭을 사용하고 16:9 비율로 표시한다.
+*/
+
+.youtube-player,
+.youtube-media {
+  position: relative;
+
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 16 / 9;
+
+  min-width: 0;
+  overflow: hidden;
+
+  justify-self: stretch;
+
+  background: #000000;
+}
+
+
+/* YouTube 미리보기 이미지 */
+
+.youtube-poster {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  /*
+    이미지 전체를 보여준다.
+    비율이 맞지 않으면 검은 여백이 생길 수 있다.
+  */
+  object-fit: contain;
+  object-position: center;
+
+  background: #000000;
+
+  transition:
+    filter 0.3s ease,
+    transform 0.5s ease;
+}
+
+.youtube-player:hover .youtube-poster {
+  filter: brightness(0.82);
+  transform: scale(1.01);
+}
+
+
+/* 중앙 재생 버튼 */
+
+.youtube-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+
+  width: 64px;
+  height: 64px;
+  padding: 0;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  color: #ffffff;
+  background: rgba(15, 15, 15, 0.5);
+
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transform: translate(-50%, -50%);
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+/* 기존 HTML에 span 글자가 있어도 숨김 */
+
+.youtube-play span {
+  display: none;
+}
+
+
+/* 재생 삼각형 */
+
+.youtube-play::before {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: 53%;
+
+  width: 0;
+  height: 0;
+
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 11px solid #ffffff;
+
+  transform: translate(-50%, -50%);
+}
+
+.youtube-play:hover {
+  background: rgba(15, 15, 15, 0.8);
+  border-color: #ffffff;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1.07);
+}
+
+
+/* 버튼 클릭 후 생성되는 YouTube 영상 */
+
+.youtube-video {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+}
+
+
+/* ========================================
+   작품 이미지 갤러리
+======================================== */
+
+.work-gallery.two-images {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+
+  align-items: start;
+}
+
+.gallery-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+}
+
+
+/* ========================================
+   작게 표시할 단일 이미지
+======================================== */
+
+.work-media.small-image {
+  width: 60%;
+  max-width: 520px;
+
+  justify-self: center;
+}
+
+
+/* ========================================
+   작품 글
+======================================== */
+
+.work-text {
+  min-width: 0;
+  padding-top: 4px;
+}
+
+.work-text h3 {
+  margin: 0 0 12px;
+
+  font-size: 28px;
+  font-weight: 300;
+
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+
+  word-break: keep-all;
+}
+
+.work-meta {
+  margin: 0 0 40px;
+
+  color: #777777;
+
+  font-size: 12px;
+  font-weight: 300;
+
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+.work-text p {
+  max-width: 460px;
+  margin-top: 0;
+
+  font-size: 15px;
+  font-weight: 300;
+
+  line-height: 1.8;
+  letter-spacing: -0.01em;
+
+  word-break: keep-all;
+}
+
+
+/* 작품 소제목 */
+
+.work-text .work-subtitle {
+  margin: 0 0 30px;
+
+  font-size: 14px;
+  font-weight: 300;
+
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+
+
+/* 작품 본문 */
+
+.work-text .work-description {
+  margin: 0 0 20px;
+
+  font-size: 15px;
+  font-weight: 300;
+
+  line-height: 1.85;
+  letter-spacing: -0.015em;
+
+  word-break: keep-all;
+}
+
+
+/* ========================================
+   Y.SOOKYOUNG 개인 작품
+   가장 크게 표시되는 영역
+======================================== */
+
+.featured-works .work {
+  width: 100%;
+
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(280px, 1fr);
+
+  gap: 50px;
+
+  margin-bottom: 150px;
+}
+
+.featured-works .media-placeholder {
+  min-height: 520px;
+}
+
+.featured-works .work-text h3 {
+  font-size: 28px;
+}
+
+.featured-works .work-text .work-description {
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+
+/* ========================================
+   Works / Releases
+   조금 작게 표시되는 영역
+======================================== */
+
+.secondary-works {
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+.secondary-works .work {
+  width: 82%;
+  max-width: 1120px;
+
+  grid-template-columns:
+    minmax(0, 1.55fr)
+    minmax(220px, 0.75fr);
+
+  gap: 36px;
+
+  margin:
+    0
+    auto
+    90px;
+}
+
+.secondary-works .work:last-child {
+  margin-bottom: 0;
+}
+
+.secondary-works .media-placeholder {
+  min-height: 340px;
+}
+
+.secondary-works .work-text {
+  padding-top: 2px;
+}
+
+.secondary-works .work-text h3 {
+  margin-bottom: 8px;
+
+  font-size: 21px;
+  line-height: 1.35;
+}
+
+.secondary-works .work-meta {
+  margin-bottom: 24px;
+
+  font-size: 11px;
+}
+
+.secondary-works .work-text .work-subtitle {
+  margin-bottom: 20px;
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.secondary-works .work-text .work-description,
+.secondary-works .work-text > p:not(.work-meta):not(.work-subtitle) {
+  max-width: 390px;
+  margin-bottom: 16px;
+
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+
+/* ========================================
+   작가 소개
+======================================== */
+
+.about-content {
+  display: grid;
+
+  grid-template-columns:
+    180px
+    minmax(0, 780px);
+
+  gap: clamp(45px, 7vw, 110px);
+
+  align-items: start;
+}
+
+
+/* 작가 사진 */
+
+.about-photo-wrap {
+  width: 180px;
+  margin: 0;
+}
+
+.about-photo {
+  display: block;
+
+  width: 100%;
+  aspect-ratio: 3 / 4;
+
+  object-fit: cover;
+  object-position: center;
+
+  filter: grayscale(100%);
+}
+
+
+/* 작가 소개 글 */
+
+.about-text {
+  width: 100%;
+  max-width: 780px;
+}
+
+.about-text p {
+  margin: 0 0 24px;
+
+  font-size: clamp(16px, 1.15vw, 20px);
+  font-weight: 300;
+
+  line-height: 1.9;
+  letter-spacing: -0.01em;
+
+  word-break: keep-all;
+}
+
+
+/* ========================================
+   연락처
+======================================== */
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact h2 {
+  width: 100%;
+}
+
+.contact a {
+  margin-bottom: 12px;
+
+  font-size: 21px;
+  font-weight: 300;
+
+  border-bottom: 1px solid #111111;
+
+  transition: opacity 0.2s ease;
+}
+
+.contact a:hover {
+  opacity: 0.5;
+}
+
+
+/* ========================================
+   하단
+======================================== */
+
+footer {
+  padding: 40px 4vw;
+
+  background: #f3f3f0;
+
+  border-top: 1px solid #dddddd;
+
+  font-size: 11px;
+  font-weight: 300;
+
+  letter-spacing: 0.08em;
+  text-align: right;
+}
+
+
+/* ========================================
+   태블릿 화면
+======================================== */
+
+@media (max-width: 1000px) {
+
+  nav {
+    gap: 18px;
+  }
+
+  .featured-works .work,
+  .secondary-works .work {
+    grid-template-columns:
+      minmax(0, 1.5fr)
+      minmax(220px, 1fr);
+  }
+
+  .secondary-works .work {
+    width: 90%;
+  }
+
+  .about-content {
+    grid-template-columns:
+      160px
+      minmax(0, 1fr);
+
+    gap: 55px;
+  }
+
+  .about-photo-wrap {
+    width: 160px;
+  }
+}
+
+
+/* ========================================
+   모바일 화면
+======================================== */
+
+@media (max-width: 760px) {
+
+  /* 첫 화면 */
+
+  .intro h1 {
+    padding-left: 0.3em;
+
+    font-size: 17px;
+    letter-spacing: 0.3em;
+  }
+
+
+  /* 모바일 메뉴 */
+
+  .site-header {
+    padding: 18px 20px;
+  }
+
+  .logo {
+    font-size: 10px;
+    letter-spacing: 0.13em;
+  }
+
+  nav {
+    gap: 9px;
+  }
+
+  nav a {
+    font-size: 9px;
+    letter-spacing: 0.01em;
+  }
+
+
+  /* 모바일 공통 섹션 */
+
+  .section {
+    padding: 90px 20px;
+  }
+
+  .section h2 {
+    margin-bottom: 50px;
+  }
+
+
+  /* 모바일 개인 작품 */
+
+  .featured-works .work {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+    gap: 28px;
+
+    margin-bottom: 100px;
+  }
+
+  .featured-works .media-placeholder {
+    min-height: 300px;
+  }
+
+  .featured-works .work-text h3 {
+    font-size: 24px;
+  }
+
+  .featured-works .work-meta {
+    margin-bottom: 25px;
+  }
+
+  .featured-works .work-text .work-description {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+
+  /* 모바일 Works / Releases */
+
+  .secondary-works {
+    padding-top: 75px;
+    padding-bottom: 75px;
+  }
+
+  .secondary-works .work {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+    gap: 22px;
+
+    margin-bottom: 75px;
+  }
+
+  .secondary-works .media-placeholder {
+    min-height: 230px;
+  }
+
+  .secondary-works .work-text h3 {
+    font-size: 20px;
+  }
+
+  .secondary-works .work-meta {
+    margin-bottom: 20px;
+
+    font-size: 10px;
+  }
+
+  .secondary-works .work-text .work-subtitle {
+    font-size: 12px;
+  }
+
+  .secondary-works .work-text .work-description,
+  .secondary-works .work-text > p:not(.work-meta):not(.work-subtitle) {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+
+  /* 모바일 이미지 */
+
+  .work-gallery.two-images {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .work-media.small-image {
+    width: 100%;
+    max-width: none;
+  }
+
+
+  /* 모바일 YouTube */
+
+  .youtube-player,
+  .youtube-media {
+    width: 100%;
+    max-width: none;
+  }
+
+  .youtube-play {
+    width: 54px;
+    height: 54px;
+  }
+
+  .youtube-play::before {
+    border-top-width: 6px;
+    border-bottom-width: 6px;
+    border-left-width: 9px;
+  }
+
+
+  /* 모바일 작가 소개 */
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .about-photo-wrap {
+    width: 140px;
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+
+  /* 모바일 연락처 */
+
+  .contact a {
+    font-size: 18px;
+  }
+
+
+  /* 모바일 하단 */
+
+  footer {
+    padding: 35px 20px;
+  }
+}
+
+/* ========================================
+   Works / Releases 영상 규격 통일
+======================================== */
+
+/* MP4와 YouTube를 동일한 16:9 규격으로 설정 */
+
+.secondary-works .work-media,
+.secondary-works .youtube-player,
+.secondary-works .youtube-media {
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 16 / 9;
+
+  min-width: 0;
+  overflow: hidden;
+
+  justify-self: stretch;
+
+  background: #000000;
+}
+
+
+/* Works의 직접 업로드 영상 */
+
+.secondary-works .work-video {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+
+  object-fit: contain;
+
+  background: #000000;
+}
+
+
+/* Works의 YouTube 미리보기 이미지 */
+
+.secondary-works .youtube-poster {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  background: #000000;
+}
+
+
+/* 클릭 후 생성되는 YouTube 영상 */
+
+.secondary-works .youtube-video {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+}
+
+
+/* 모바일 */
+
+@media (max-width: 760px) {
+
+  .secondary-works .work-media,
+  .secondary-works .youtube-player,
+  .secondary-works .youtube-media {
+    width: 100%;
+    max-width: none;
+  }
+
+}
+
+/* ========================================
+   자동재생 영상
+   원본 비율 그대로 표시
+======================================== */
+
+.autoplay-media {
+  width: 100%;
+  overflow: hidden;
+
+  background: transparent;
+
+  /* 고정된 16:9 비율 제거 */
+  aspect-ratio: auto;
+}
+
+.autoplay-media .autoplay-video {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  /* 원본 영상 전체 표시 */
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+
+  background: transparent;
+}
+
+/* ========================================
+   Works / Releases 단일 이미지 원본 비율 복구
+======================================== */
+
+/* 이미지가 들어간 미디어 영역은 16:9 고정 해제 */
+
+.secondary-works .work-media.small-image {
+  width: 60%;
+  max-width: 520px;
+
+  height: auto;
+  aspect-ratio: auto;
+
+  overflow: visible;
+
+  justify-self: center;
+
+  background: transparent;
+}
+
+
+/* 단일 이미지 전체 표시 */
+
+.secondary-works .work-media.small-image .work-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: auto;
+
+  object-fit: contain;
+  object-position: center;
+}
+
+
+/* 모바일에서는 이미지 폭을 넓게 표시 */
+
+@media (max-width: 760px) {
+
+  .secondary-works .work-media.small-image {
+    width: 100%;
+    max-width: none;
+  }
+
+}
+
+/* ========================================
+   자동재생 세로형 영상 원본 비율 강제 적용
+======================================== */
+
+.secondary-works .work-media.autoplay-media {
+  width: 100%;
+
+  height: auto !important;
+  aspect-ratio: auto !important;
+
+  overflow: visible;
+
+  justify-self: stretch;
+
+  background: transparent;
+}
+
+.secondary-works
+.work-media.autoplay-media
+.work-video.autoplay-video {
+  display: block;
+
+  width: 100%;
+  height: auto !important;
+
+  aspect-ratio: auto !important;
+
+  object-fit: contain !important;
+  object-position: center;
+
+  background: transparent !important;
+}
+
+
+/* 모바일 */
+
+@media (max-width: 760px) {
+
+  .secondary-works .work-media.autoplay-media {
+    width: 100%;
+    height: auto !important;
+    aspect-ratio: auto !important;
+  }
+
+  .secondary-works
+  .work-media.autoplay-media
+  .work-video.autoplay-video {
+    width: 100%;
+    height: auto !important;
+    aspect-ratio: auto !important;
+  }
+
+}
